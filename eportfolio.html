@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Portfolio — Ashwaq Noor Neeha</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F8F4EE;--white:#FDFAF6;--ink:#1A1208;--brown:#5C3D1E;--gold:#C4862B;--gold-light:#E8B96A;--sage:#6B8F71;--muted:#7A6A55;--border:#DDD4C2;--bg:#F0EAE0;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);font-size:15px;line-height:1.6;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(253,250,246,0.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;}
+.nav-logo{font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:700;color:var(--brown);}
+.nav-links{display:flex;gap:2px;list-style:none;flex-wrap:wrap;}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:0.7rem;font-weight:500;padding:5px 9px;border-radius:20px;transition:all 0.15s;letter-spacing:0.03em;text-transform:uppercase;cursor:pointer;}
+.nav-links a:hover,.nav-links a.active{color:var(--brown);background:var(--bg);}
+.page{display:none;min-height:100vh;padding-top:56px;}.page.active{display:block;}
+
+/* ── HOME ── */
+.home-wrap{min-height:calc(100vh - 56px);display:grid;grid-template-rows:auto 1fr;background:var(--white);}
+.home-top{padding:52px 64px 32px;border-bottom:1px solid var(--border);}
+.home-tag{display:inline-block;background:var(--gold);color:white;font-size:0.63rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 11px;border-radius:3px;margin-bottom:16px;}
+.home-wrap h1{font-family:'Playfair Display',serif;font-size:3rem;font-weight:700;line-height:1.1;color:var(--ink);margin-bottom:6px;}
+.home-wrap h1 em{font-style:italic;color:var(--gold);}
+.home-name{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--brown);margin-bottom:16px;}
+.home-divider{width:40px;height:2px;background:var(--gold);margin-bottom:14px;border-radius:2px;}
+.home-desc{color:var(--muted);font-size:0.88rem;line-height:1.75;max-width:600px;margin-bottom:20px;}
+.home-meta-row{display:flex;gap:10px;flex-wrap:wrap;}
+.home-chip{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:5px 13px;font-size:0.75rem;color:var(--brown);font-weight:500;}
+.home-bottom{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.home-col{padding:28px 40px 28px 64px;border-right:1px solid var(--border);}
+.home-col:last-child{border-right:none;padding-left:40px;}
+.home-col-title{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:12px;}
+.std-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.std-btn{background:white;border:1px solid var(--border);border-radius:9px;padding:12px 13px;cursor:pointer;transition:all 0.18s;display:flex;align-items:center;gap:10px;}
+.std-btn:hover{border-color:var(--gold);transform:translateX(2px);}
+.std-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.78rem;flex-shrink:0;}
+.std-title{font-size:0.78rem;font-weight:600;color:var(--ink);line-height:1.2;}
+.std-sub{font-size:0.65rem;color:var(--muted);margin-top:1px;}
+.n1 .std-num{background:#FEF3E2;color:#C4862B;}.n2 .std-num{background:#E8F4EC;color:#3D7A47;}
+.n3 .std-num{background:#EEE8F8;color:#6B4FA8;}.n4 .std-num{background:#FDE8E8;color:#B84040;}
+.n5 .std-num{background:#E2EEF8;color:#3A6EA8;}
+.sec-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.sec-btn{background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:11px 13px;cursor:pointer;transition:all 0.18s;display:flex;align-items:center;gap:8px;font-size:0.78rem;font-weight:500;color:var(--brown);}
+.sec-btn:hover{border-color:var(--gold);}
+.sec-icon{font-size:1rem;}
+
+/* ── STANDARDS SUB-NAV ── */
+.std-subnav{background:var(--bg);border-bottom:1px solid var(--border);padding:0 36px;display:flex;gap:4px;position:sticky;top:56px;z-index:100;}
+.std-subnav a{text-decoration:none;color:var(--muted);font-size:0.72rem;font-weight:500;padding:10px 14px;border-bottom:2px solid transparent;transition:all 0.15s;cursor:pointer;white-space:nowrap;}
+.std-subnav a:hover{color:var(--brown);}
+.std-subnav a.active{color:var(--brown);border-bottom-color:var(--gold);}
+
+/* ── INNER PAGES ── */
+.pi{max-width:880px;margin:0 auto;padding:40px 36px;}.pi.wide{max-width:1020px;}
+.ptag{display:inline-block;font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 9px;border-radius:3px;margin-bottom:9px;}
+.tag-r{background:#F0EAE0;color:var(--brown);}.tag-1{background:#FEF3E2;color:#C4862B;}
+.tag-2{background:#E8F4EC;color:#3D7A47;}.tag-3{background:#EEE8F8;color:#6B4FA8;}
+.tag-4{background:#FDE8E8;color:#B84040;}.tag-5{background:#E2EEF8;color:#3A6EA8;}
+.tag-t{background:#E8F0F8;color:#2A5A8A;}.tag-c{background:#F0EAE0;color:var(--brown);}
+.tag-ref{background:#1A1208;color:var(--gold-light);}
+.ptitle{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:4px;}
+.psub{font-size:0.85rem;color:var(--muted);margin-bottom:20px;line-height:1.5;}
+.two-col{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;align-items:start;}
+.main p{margin-bottom:10px;line-height:1.75;font-size:0.91rem;}
+.main h3{font-family:'Playfair Display',serif;font-size:0.97rem;color:var(--brown);margin:14px 0 6px;}
+.sb{display:flex;flex-direction:column;gap:9px;}
+.card{background:white;border:1px solid var(--border);border-radius:9px;padding:13px 15px;}
+.card h4{font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--muted);margin-bottom:6px;padding-bottom:5px;border-bottom:1px solid var(--border);}
+.card ul{list-style:none;display:flex;flex-direction:column;gap:3px;}
+.card ul li{font-size:0.8rem;color:var(--ink);padding-left:11px;position:relative;line-height:1.4;}
+.card ul li::before{content:'→';position:absolute;left:0;color:var(--gold);font-size:0.66rem;top:3px;}
+.card-e{background:#FDF5E8;border-color:#EED9A8;}.card-e h4{color:#A07020;border-color:#EED9A8;}
+.card-e p{font-size:0.8rem;color:#7A5010;line-height:1.55;}
+.card-k{background:var(--ink);}.card-k h4{color:var(--gold-light);border-color:#3A3020;}
+.card-k p{font-family:'DM Mono',monospace;font-size:0.69rem;color:#BDB3A6;line-height:1.55;margin-bottom:4px;}
+.hl{background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:11px 14px;margin:12px 0;}
+.hl h4{font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--gold);margin-bottom:4px;}
+.hl p{font-size:0.83rem;color:var(--muted);line-height:1.6;margin:0;}
+.rf{background:white;border:1px solid var(--border);border-left:3px solid var(--sage);border-radius:0 9px 9px 0;padding:11px 16px;margin-top:14px;}
+.rf h4{font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--sage);margin-bottom:4px;}
+.rf p{font-size:0.86rem;color:var(--ink);line-height:1.7;font-style:italic;margin:0;}
+.rc{background:white;border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:10px 12px;}
+.rc h4{font-size:0.64rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--brown);margin-bottom:3px;}
+.rc p{font-size:0.79rem;color:var(--muted);line-height:1.5;}
+
+/* inline cite */
+.cite{font-size:0.72rem;color:var(--brown);background:#FEF3E2;border-radius:3px;padding:0 4px;font-style:normal;white-space:nowrap;}
+
+.viz-block{background:white;border:1px solid var(--border);border-radius:11px;padding:18px;margin:16px 0;}
+.viz-block h4{font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--gold);margin-bottom:12px;}
+.bloom-bar{margin:5px 0;}
+.bloom-label{font-size:0.73rem;color:var(--ink);margin-bottom:2px;display:flex;justify-content:space-between;}
+.bloom-track{background:var(--bg);border-radius:4px;height:9px;overflow:hidden;}
+.bloom-fill{height:100%;border-radius:4px;transition:width 1s ease;}
+.apst-wheel{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin:8px 0;}
+.apst-tile{border-radius:9px;padding:12px 6px;text-align:center;cursor:pointer;transition:transform 0.18s;}
+.apst-tile:hover{transform:scale(1.04);}
+.apst-tile .anum{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;line-height:1;}
+.apst-tile .albl{font-size:0.6rem;margin-top:3px;line-height:1.3;font-weight:500;}
+.seat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin:8px 0;}
+.seat{width:100%;aspect-ratio:1;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:0.58rem;font-weight:600;text-align:center;line-height:1.2;}
+.s-support{background:#FEF3E2;color:#9A6010;border:1px solid #F0C87A;}
+.s-normal{background:var(--bg);color:var(--muted);border:1px solid var(--border);}
+.s-pair{background:#E8F4EC;color:#2A6A34;border:1px solid #90C99A;}
+.legend-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:7px;}
+.legend-item{display:flex;align-items:center;gap:4px;font-size:0.68rem;color:var(--muted);}
+.legend-dot{width:9px;height:9px;border-radius:2px;}
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px;}
+.tool{background:white;border:1px solid var(--border);border-radius:9px;padding:13px;transition:all 0.18s;}
+.tool:hover{border-color:var(--gold);}
+.tool-type{font-size:0.58rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold);font-weight:700;margin-bottom:3px;}
+.tool h3{font-size:0.86rem;font-weight:600;color:var(--ink);margin-bottom:3px;}
+.tool p{font-size:0.78rem;color:var(--muted);line-height:1.5;margin-bottom:6px;}
+.tool-use{font-size:0.74rem;color:var(--ink);background:var(--bg);border-left:2px solid var(--gold);padding:4px 7px;border-radius:0 4px 4px 0;margin-bottom:6px;line-height:1.4;}
+.tapst{font-size:0.63rem;background:var(--bg);color:var(--brown);padding:2px 6px;border-radius:9px;font-weight:600;}
+.refs-page{background:var(--ink);color:white;min-height:calc(100vh - 56px);padding-top:56px;}
+.refs-inner{max-width:840px;margin:0 auto;padding:40px 36px;}
+.refs-inner .ptitle{color:white;}.refs-inner .psub{color:#9A8F80;}
+.ref-list{list-style:none;display:flex;flex-direction:column;gap:11px;}
+.ref-list li{font-family:'DM Mono',monospace;font-size:0.76rem;color:#C0B8AC;line-height:1.65;padding-left:14px;position:relative;}
+.ref-list li::before{content:'—';position:absolute;left:0;color:var(--gold-light);}
+.pf{text-align:center;padding:18px;border-top:1px solid var(--border);font-size:0.71rem;color:var(--muted);margin-top:40px;}
+.fade{opacity:0;transform:translateY(10px);transition:opacity 0.4s,transform 0.4s;}.fade.in{opacity:1;transform:translateY(0);}
+.div{height:1px;background:var(--border);margin:20px 0;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Ashwaq Noor Neeha</div>
+  <ul class="nav-links">
+    <li><a onclick="show('home')" id="nav-home" class="active">Home</a></li>
+    <li><a onclick="show('rationale')" id="nav-rationale">Rationale</a></li>
+    <li><a onclick="showStd('s1')" id="nav-standards">Standards</a></li>
+    <li><a onclick="show('tools')" id="nav-tools">ICT Tools</a></li>
+    <li><a onclick="show('conclusion')" id="nav-conclusion">Conclusion</a></li>
+    <li><a onclick="show('references')" id="nav-references">References</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════ HOME ══════════════════ -->
+<div id="page-home" class="page active">
+  <div class="home-wrap">
+    <div class="home-top fade">
+      <div class="home-tag">EDU542 — Professional E-Portfolio</div>
+      <h1>Teaching <em>Maths</em> with Purpose</h1>
+      <div class="home-name">Ashwaq Noor Neeha</div>
+      <div class="home-divider"></div>
+      <p class="home-desc">Five classroom-ready resources prepared for secondary Mathematics teaching, each aligned to APST Standards 1–5 and the NESA Mathematics K–10 Syllabus.</p>
+      <div class="home-meta-row">
+        <span class="home-chip">Alphacrucis University College</span>
+        <span class="home-chip">Master of Teaching (Secondary)</span>
+        <span class="home-chip">EDU542 ICT in Education</span>
+        <span class="home-chip">Mathematics — Stage 5</span>
+        <span class="home-chip">NESA K–10 Syllabus</span>
+      </div>
+    </div>
+    <div class="home-bottom">
+      <div class="home-col fade">
+        <div class="home-col-title">APST Standards — Click to Explore</div>
+        <div class="std-grid">
+          <div class="std-btn n1" onclick="showStd('s1')"><div class="std-num">1</div><div><div class="std-title">Know Students</div><div class="std-sub">Algebra Worksheet</div></div></div>
+          <div class="std-btn n2" onclick="showStd('s2')"><div class="std-num">2</div><div><div class="std-title">Know Content</div><div class="std-sub">PowerPoint + Activity</div></div></div>
+          <div class="std-btn n3" onclick="showStd('s3')"><div class="std-num">3</div><div><div class="std-title">Plan & Teach</div><div class="std-sub">Financial Maths</div></div></div>
+          <div class="std-btn n4" onclick="showStd('s4')"><div class="std-num">4</div><div><div class="std-title">Safe Environment</div><div class="std-sub">Seating Plan</div></div></div>
+          <div class="std-btn n5" onclick="showStd('s5')"><div class="std-num">5</div><div><div class="std-title">Assess & Report</div><div class="std-sub">Test + OneNote</div></div></div>
+        </div>
+      </div>
+      <div class="home-col fade">
+        <div class="home-col-title">Other Sections</div>
+        <div class="sec-grid">
+          <div class="sec-btn" onclick="show('rationale')"><span class="sec-icon">📄</span>Rationale</div>
+          <div class="sec-btn" onclick="show('tools')"><span class="sec-icon">🛠</span>ICT Tools</div>
+          <div class="sec-btn" onclick="show('conclusion')"><span class="sec-icon">✍️</span>Conclusion</div>
+          <div class="sec-btn" onclick="show('references')"><span class="sec-icon">📚</span>References</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ RATIONALE ══════════════════ -->
+<div id="page-rationale" class="page">
+<div class="pi">
+  <div class="fade">
+    <div class="ptag tag-r">Rationale</div>
+    <h1 class="ptitle">Why This Portfolio?</h1>
+    <p class="psub">A professional resource collection built in preparation for a career in secondary Mathematics teaching.</p>
+  </div>
+  <div class="viz-block fade">
+    <h4>Portfolio at a Glance — APST Standards 1–5</h4>
+    <div class="apst-wheel">
+      <div class="apst-tile" style="background:#FEF3E2;" onclick="showStd('s1')"><div class="anum" style="color:#C4862B;">1</div><div class="albl" style="color:#9A6010;">Know Students</div><div style="font-size:0.6rem;color:#C4862B;margin-top:4px;">Algebra Worksheet</div></div>
+      <div class="apst-tile" style="background:#E8F4EC;" onclick="showStd('s2')"><div class="anum" style="color:#3D7A47;">2</div><div class="albl" style="color:#2A5A34;">Know Content</div><div style="font-size:0.6rem;color:#3D7A47;margin-top:4px;">PowerPoint + Activity</div></div>
+      <div class="apst-tile" style="background:#EEE8F8;" onclick="showStd('s3')"><div class="anum" style="color:#6B4FA8;">3</div><div class="albl" style="color:#4A3080;">Plan & Teach</div><div style="font-size:0.6rem;color:#6B4FA8;margin-top:4px;">Financial Maths</div></div>
+      <div class="apst-tile" style="background:#FDE8E8;" onclick="showStd('s4')"><div class="anum" style="color:#B84040;">4</div><div class="albl" style="color:#8A2828;">Safe Environment</div><div style="font-size:0.6rem;color:#B84040;margin-top:4px;">Seating Plan</div></div>
+      <div class="apst-tile" style="background:#E2EEF8;" onclick="showStd('s5')"><div class="anum" style="color:#3A6EA8;">5</div><div class="albl" style="color:#284E7A;">Assess & Report</div><div style="font-size:0.6rem;color:#3A6EA8;margin-top:4px;">Test + OneNote</div></div>
+    </div>
+    <p style="font-size:0.73rem;color:var(--muted);margin-top:6px;">Click any standard to navigate directly.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:2fr 1fr;gap:28px;" class="fade">
+    <div>
+      <p>This e-portfolio presents five classroom-ready resources I am developing as I prepare to graduate as a secondary Mathematics teacher. Each resource is mapped to one APST Standard and represents a tool I intend to use and refine throughout my career in Stage 5 Mathematics.</p>
+      <p>The portfolio demonstrates my learning goals, developing professional knowledge, and ability to justify teaching resources against the APST Standards, the NESA K–10 Syllabus, and current peer-reviewed research. As <span class="cite">Darling-Hammond & Bransford (2005)</span> argue, becoming a teacher is a career-long learning process — this portfolio is evidence of where I am in that journey.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div class="rc"><h4>Teaching Area</h4><p>Mathematics — Stage 5, Secondary</p></div>
+      <div class="rc"><h4>Standards</h4><p>APST 1–5, one resource each</p></div>
+      <div class="rc"><h4>Curriculum</h4><p>NESA Mathematics K–10, Stage 5</p></div>
+    </div>
+  </div>
+  <div class="pf">Ashwaq Noor Neeha · EDU542 · Alphacrucis University College</div>
+</div>
+</div>
+
+<!-- ══════════════════ STANDARDS PAGE (container) ══════════════════ -->
+<div id="page-standards" class="page">
+  <div class="std-subnav">
+    <a onclick="showStd('s1')" id="snav-s1" class="active">Standard 1</a>
+    <a onclick="showStd('s2')" id="snav-s2">Standard 2</a>
+    <a onclick="showStd('s3')" id="snav-s3">Standard 3</a>
+    <a onclick="showStd('s4')" id="snav-s4">Standard 4</a>
+    <a onclick="showStd('s5')" id="snav-s5">Standard 5</a>
+  </div>
+
+  <!-- S1 -->
+  <div id="std-s1" class="std-panel">
+  <div class="pi">
+    <div class="fade">
+      <div class="ptag tag-1">APST Standard 1</div>
+      <h1 class="ptitle">Algebra Revision Worksheet</h1>
+      <p class="psub">Know Students and How They Learn — Stage 5 Mathematics</p>
+    </div>
+    <div class="viz-block fade">
+      <h4>Design Principles — Built for Diverse Learners</h4>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:7px;">
+        <div style="background:#FEF3E2;border-radius:7px;padding:10px;text-align:center;"><div style="font-size:1.2rem;margin-bottom:4px;">✏️</div><div style="font-size:0.73rem;font-weight:600;color:#9A6010;">Plain English</div><div style="font-size:0.67rem;color:var(--muted);margin-top:2px;">Instructions written for students, not the curriculum</div></div>
+        <div style="background:#E8F4EC;border-radius:7px;padding:10px;text-align:center;"><div style="font-size:1.2rem;margin-bottom:4px;">📏</div><div style="font-size:0.73rem;font-weight:600;color:#2A6A34;">Working Lines</div><div style="font-size:0.67rem;color:var(--muted);margin-top:2px;">Reduces cognitive load for all learners</div></div>
+        <div style="background:#EEE8F8;border-radius:7px;padding:10px;text-align:center;"><div style="font-size:1.2rem;margin-bottom:4px;">🎨</div><div style="font-size:0.73rem;font-weight:600;color:#4A3080;">Colour Coding</div><div style="font-size:0.67rem;color:var(--muted);margin-top:2px;">Visual navigation for attention difficulties</div></div>
+        <div style="background:#E2EEF8;border-radius:7px;padding:10px;text-align:center;"><div style="font-size:1.2rem;margin-bottom:4px;">📶</div><div style="font-size:0.73rem;font-weight:600;color:#284E7A;">Simple → Complex</div><div style="font-size:0.67rem;color:var(--muted);margin-top:2px;">ZPD sequencing — confidence before challenge</div></div>
+      </div>
+    </div>
+    <div class="two-col fade">
+      <div class="main">
+        <p>An algebra revision worksheet for a mixed-ability secondary Mathematics class. Covers equations with variables on both sides, brackets, algebraic fractions, changing the subject, and word problems — with plain English instructions, structured working lines, and colour-coded sections.</p>
+        <h3>Learning Goal</h3>
+        <p>My goal is to design resources that meet students where they are. This worksheet deliberately lowers the entry barrier for students who struggle with dense textbook language while maintaining full Stage 5 rigour.</p>
+        <h3>Why it addresses Standard 1</h3>
+        <p>APST Standard 1 requires teachers to know how students learn and design accordingly. Instructions are in plain English to remove language barriers. Working lines reduce cognitive load. Questions are sequenced simple-to-complex following Vygotsky's zone of proximal development <span class="cite">(Sullivan et al., 2020)</span>. <span class="cite">Hattie (2009)</span> identifies scaffolding as one of the highest-effect instructional strategies — it is built into every section here.</p>
+        <div class="hl"><h4>NESA Alignment</h4><p>MA5.1-5NA, MA5.2-6NA — Algebraic expressions and linear equations, Stage 5.</p></div>
+        <div class="rf"><h4>Learning Reflection</h4><p>"Accessibility is not about lowering standards — it is about removing unnecessary barriers so students can demonstrate what they actually know."</p></div>
+      </div>
+      <div class="sb">
+        <div class="card"><h4>At a Glance</h4><ul>
+          <li>Stage 5, mixed-ability</li><li>Plain English instructions</li>
+          <li>Structured working lines</li><li>Colour-coded headers</li>
+          <li>6 algebra topic areas</li>
+        </ul></div>
+        <div class="card-e card"><h4>⚖ Ethics</h4><p>Scaffolded materials distributed discreetly. No student publicly identified as needing support. Simplification must not reduce rigour — all tasks align to NESA outcomes.</p></div>
+        <div class="card-k card"><h4>References</h4>
+          <p>Sullivan et al. (2020). Mathematics Education Research Journal, 32, 405–424.</p>
+          <p>Hattie, J. (2009). Visible Learning. Routledge.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pf">Ashwaq Noor Neeha · EDU542 · Alphacrucis University College</div>
+  </div>
+  </div>
+
+  <!-- S2 -->
+  <div id="std-s2" class="std-panel" style="display:none;">
+  <div class="pi">
+    <div class="fade">
+      <div class="ptag tag-2">APST Standard 2</div>
+      <h1 class="ptitle">PowerPoint Lesson + Hands-On Activity</h1>
+      <p class="psub">Know the Content and How to Teach It — Stage 5 Mathematics</p>
+    </div>
+    <div class="viz-block fade">
+      <h4>Bruner's (1966) Learning Model — Concrete to Abstract</h4>
+      <div style="display:flex;align-items:stretch;gap:7px;">
+        <div style="flex:1;background:#FEF3E2;border-radius:7px;padding:12px;text-align:center;"><div style="font-size:1.4rem;">✋</div><div style="font-size:0.74rem;font-weight:700;color:#9A6010;margin:5px 0 2px;">Enactive</div><div style="font-size:0.67rem;color:var(--muted);">Students physically manipulate materials to discover the concept</div></div>
+        <div style="display:flex;align-items:center;color:var(--gold);font-size:1.1rem;font-weight:700;">→</div>
+        <div style="flex:1;background:#E8F4EC;border-radius:7px;padding:12px;text-align:center;"><div style="font-size:1.4rem;">👁️</div><div style="font-size:0.74rem;font-weight:700;color:#2A6A34;margin:5px 0 2px;">Iconic</div><div style="font-size:0.67rem;color:var(--muted);">GeoGebra / PowerPoint diagrams make the relationship visible</div></div>
+        <div style="display:flex;align-items:center;color:var(--gold);font-size:1.1rem;font-weight:700;">→</div>
+        <div style="flex:1;background:#EEE8F8;border-radius:7px;padding:12px;text-align:center;"><div style="font-size:1.4rem;">🔣</div><div style="font-size:0.74rem;font-weight:700;color:#4A3080;margin:5px 0 2px;">Symbolic</div><div style="font-size:0.67rem;color:var(--muted);">Students apply the formula in practice and assessment</div></div>
+      </div>
+    </div>
+    <div class="two-col fade">
+      <div class="main">
+        <p>A purpose-built PowerPoint lesson with learning intention, success criteria, worked examples, and practice questions — combined with a hands-on activity that gives abstract formulas a concrete physical meaning before symbolic practice begins.</p>
+        <h3>Learning Goal</h3>
+        <p>My goal is to develop deep pedagogical content knowledge — not just knowing the mathematics, but knowing how to represent it in multiple ways so all learners can access it.</p>
+        <h3>Why it addresses Standard 2</h3>
+        <p>APST Standard 2 requires teachers to know their content and how to teach it effectively. The PowerPoint sequences prerequisite concepts before complex applications. <span class="cite">Anthony & Walshaw (2009)</span> identify multi-representational teaching — visual, symbolic, and verbal — as the hallmark of effective mathematics instruction. The hands-on activity applies <span class="cite">Bruner's (1966)</span> enactive-iconic-symbolic model: students engage concretely before encountering the abstract formula, giving it meaning they can retrieve under assessment conditions.</p>
+        <div class="hl"><h4>NESA Alignment</h4><p>MA5.2-1WM, MA5.2-2WM, MA5.2-3WM — Working mathematically, Stage 5. Applicable to any content strand benefiting from concrete exploration before symbolic application.</p></div>
+        <div class="rf"><h4>Learning Reflection</h4><p>"The real professional skill is selecting which representation — hands-on, visual, or symbolic — will make content accessible to a specific group of students at a specific moment."</p></div>
+      </div>
+      <div class="sb">
+        <div class="card"><h4>At a Glance</h4><ul>
+          <li>Stage 5, any topic</li><li>Purpose-built PowerPoint</li>
+          <li>Learning intention + success criteria</li>
+          <li>Hands-on concrete activity</li>
+          <li>Board work — live modelling</li>
+        </ul></div>
+        <div class="card-e card"><h4>⚖ Ethics</h4><p>Original diagrams and examples only. Hands-on materials must be low-cost and accessible. Digital resources also available in print for students without devices.</p></div>
+        <div class="card-k card"><h4>References</h4>
+          <p>Anthony, G., & Walshaw, M. (2009). Journal of Mathematics Education, 2(2), 147–164.</p>
+          <p>Bruner, J. S. (1966). Toward a Theory of Instruction. Harvard University Press.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pf">Ashwaq Noor Neeha · EDU542 · Alphacrucis University College</div>
+  </div>
+  </div>
+
+  <!-- S3 -->
+  <div id="std-s3" class="std-panel" style="display:none;">
+  <div class="pi">
+    <div class="fade">
+      <div class="ptag tag-3">APST Standard 3</div>
+      <h1 class="ptitle">Financial Mathematics Worksheet</h1>
+      <p class="psub">Plan for and Implement Effective Teaching and Learning — Stage 5 Mathematics</p>
+    </div>
+    <div class="viz-block fade">
+      <h4>Question Sequence — Bloom's Taxonomy Applied <span style="font-weight:400;color:var(--muted);">(Kilpatrick et al., 2001)</span></h4>
+      <div style="margin-top:6px;">
+        <div class="bloom-bar"><div class="bloom-label"><span>Q1–3 · Recall & Procedure</span><span style="color:var(--gold);">Build fluency</span></div><div class="bloom-track"><div class="bloom-fill" style="width:30%;background:#C4862B;"></div></div></div>
+        <div class="bloom-bar"><div class="bloom-label"><span>Q4–7 · Application</span><span style="color:#6B4FA8;">Mixed scenarios</span></div><div class="bloom-track"><div class="bloom-fill" style="width:60%;background:#6B4FA8;"></div></div></div>
+        <div class="bloom-bar"><div class="bloom-label"><span>Q8 · Analysis</span><span style="color:#3D7A47;">Reverse reasoning</span></div><div class="bloom-track"><div class="bloom-fill" style="width:75%;background:#3D7A47;"></div></div></div>
+        <div class="bloom-bar"><div class="bloom-label"><span>Q9–10 · Synthesis</span><span style="color:#B84040;">Multi-concept problems</span></div><div class="bloom-track"><div class="bloom-fill" style="width:100%;background:#B84040;"></div></div></div>
+      </div>
+    </div>
+    <div class="two-col fade">
+      <div class="main">
+        <p>A Financial Mathematics worksheet on income and overtime pay. Includes a reference table, two worked examples, and ten practice questions sequenced from basic procedure through reverse reasoning to multi-step synthesis.</p>
+        <h3>Learning Goal</h3>
+        <p>My goal is to plan sequences, not just tasks — designing questions that build meaningfully so students move from recall to genuine mathematical thinking without the difficulty increase feeling sudden.</p>
+        <h3>Why it addresses Standard 3</h3>
+        <p>APST Standard 3 requires deliberate, evidence-based planning. The ten questions reflect Bloom's Taxonomy in applied form <span class="cite">(Kilpatrick et al., 2001)</span>. The lesson opens with a real-life hook connecting the mathematics to students' future working lives, consistent with Standard 3.4's requirement to select strategies appropriate to student context. <span class="cite">Kilpatrick et al. (2001)</span> argue procedural fluency and conceptual understanding must develop together — this sequencing ensures both.</p>
+        <div class="hl"><h4>NESA Alignment</h4><p>MA5.1-1WM — Selects and applies appropriate strategies. Financial Mathematics content strand, Stage 5.</p></div>
+        <div class="rf"><h4>Learning Reflection</h4><p>"The order of questions is itself a teaching decision. Moving the reverse problem to a later position — after fluency is established — changes what students are able to do with it."</p></div>
+      </div>
+      <div class="sb">
+        <div class="card"><h4>At a Glance</h4><ul>
+          <li>Stage 5, Financial Mathematics</li>
+          <li>Time-and-a-half and double time</li>
+          <li>Reference table + 2 worked examples</li>
+          <li>10 questions, progressive complexity</li>
+          <li>Real-world context throughout</li>
+        </ul></div>
+        <div class="card-e card"><h4>⚖ Ethics</h4><p>Names in examples must be fictional and culturally diverse. Real-world context motivates without exposing any student's personal financial circumstances.</p></div>
+        <div class="card-k card"><h4>References</h4>
+          <p>Kilpatrick, J., Swafford, J., & Findell, B. (2001). Adding It Up. National Academy Press.</p>
+          <p>Anthony, G., & Walshaw, M. (2009). Journal of Mathematics Education, 2(2).</p>
+        </div>
+      </div>
+    </div>
+    <div class="pf">Ashwaq Noor Neeha · EDU542 · Alphacrucis University College</div>
+  </div>
+  </div>
+
+  <!-- S4 -->
+  <div id="std-s4" class="std-panel" style="display:none;">
+  <div class="pi">
+    <div class="fade">
+      <div class="ptag tag-4">APST Standard 4</div>
+      <h1 class="ptitle">Strategic Seating Plan</h1>
+      <p class="psub">Create and Maintain Supportive and Safe Learning Environments — Secondary Mathematics</p>
+    </div>
+    <div class="viz-block fade">
+      <h4>Illustrative Seating Logic — Deliberate Placement</h4>
+      <div style="background:var(--bg);border-radius:6px;padding:7px 10px;margin-bottom:8px;text-align:center;font-size:0.7rem;color:var(--muted);">📋 WHITEBOARD / FRONT OF ROOM</div>
+      <div style="margin-bottom:5px;"><div style="background:var(--ink);color:white;border-radius:4px;padding:4px 9px;font-size:0.6rem;font-weight:600;display:inline-block;">Teacher Desk</div></div>
+      <div class="seat-grid">
+        <div class="seat s-support">Support<br>Need</div><div class="seat s-pair">Peer<br>Pair A</div><div class="seat s-normal">Student</div><div class="seat s-pair">Peer<br>Pair A</div><div class="seat s-normal">Student</div>
+        <div class="seat s-support">Support<br>Need</div><div class="seat s-normal">Student</div><div class="seat s-normal">Student</div><div class="seat s-normal">Student</div><div class="seat s-pair">Peer<br>Pair B</div>
+        <div class="seat s-normal">Student</div><div class="seat s-normal">Student</div><div class="seat s-normal">Student</div><div class="seat s-normal">Student</div><div class="seat s-pair">Peer<br>Pair B</div>
+      </div>
+      <div class="legend-row">
+        <div class="legend-item"><div class="legend-dot" style="background:#FEF3E2;border:1px solid #F0C87A;"></div>Higher support — near teacher path</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#E8F4EC;border:1px solid #90C99A;"></div>Intentional peer pair</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--bg);border:1px solid var(--border);"></div>General placement</div>
+      </div>
+    </div>
+    <div class="two-col fade">
+      <div class="main">
+        <p>A strategic seating plan where every placement is a deliberate decision based on student learning needs — not alphabetical order or student preference. Students needing more support are positioned on the teacher's primary movement path, peer support pairs are intentionally selected, and disruptive social dynamics are separated without punitive framing.</p>
+        <h3>Learning Goal</h3>
+        <p>My goal is to treat classroom space as a teaching tool — thinking carefully about where each student sits and why, and being prepared to revise when observation shows it is not working.</p>
+        <h3>Why it addresses Standard 4</h3>
+        <p>APST Standard 4 requires teachers to create and <em>maintain</em> safe, inclusive environments. <span class="cite">Wannarka & Ruhl (2008)</span> found planned seating produces significantly higher on-task behaviour than self-selected arrangements. <span class="cite">Marzano et al. (2003)</span> identify proactive management as far more effective than reactive — the seating plan is the primary proactive tool available to every teacher before the first lesson begins.</p>
+        <div class="hl"><h4>APST Sub-Standards</h4><p>4.1 — Support participation. 4.2 — Manage classroom activities. 4.3 — Manage challenging behaviour proactively.</p></div>
+        <div class="rf"><h4>Learning Reflection</h4><p>"A seating plan is an architectural decision about how learning flows in the room. I will approach it analytically before meeting every new class."</p></div>
+      </div>
+      <div class="sb">
+        <div class="card"><h4>At a Glance</h4><ul>
+          <li>All secondary classes</li>
+          <li>Every seat a deliberate decision</li>
+          <li>Reviewed and revised regularly</li>
+          <li>Support needs near teacher path</li>
+          <li>Anxiety-aware positioning</li>
+        </ul></div>
+        <div class="card-e card"><h4>⚖ Ethics</h4><p>Students should not be told the reasoning behind placements in ways that stigmatise them. Adjustments must be made discreetly. Student dignity protected at every stage.</p></div>
+        <div class="card-k card"><h4>References</h4>
+          <p>Wannarka, R., & Ruhl, K. (2008). Support for Learning, 23(2), 89–93.</p>
+          <p>Marzano, R. J., et al. (2003). Classroom Management That Works. ASCD.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pf">Ashwaq Noor Neeha · EDU542 · Alphacrucis University College</div>
+  </div>
+  </div>
+
+  <!-- S5 -->
+  <div id="std-s5" class="std-panel" style="display:none;">
+  <div class="pi">
+    <div class="fade">
+      <div class="ptag tag-5">APST Standard 5</div>
+      <h1 class="ptitle">Topic Test + OneNote Feedback</h1>
+      <p class="psub">Assess, Provide Feedback and Report on Student Learning — Stage 5 Mathematics</p>
+    </div>
+    <div class="viz-block fade">
+      <h4>Assessment Feedback Loop — Standard 5.4 in Practice</h4>
+      <div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap;">
+        <div style="background:#E2EEF8;border-radius:7px;padding:10px 12px;text-align:center;min-width:100px;"><div style="font-size:1rem;">📝</div><div style="font-size:0.72rem;font-weight:700;color:#284E7A;margin-top:3px;">Students<br>Complete Test</div></div>
+        <div style="color:var(--gold);font-size:1.1rem;font-weight:700;">→</div>
+        <div style="background:#FEF3E2;border-radius:7px;padding:10px 12px;text-align:center;min-width:100px;"><div style="font-size:1rem;">🔍</div><div style="font-size:0.72rem;font-weight:700;color:#9A6010;margin-top:3px;">Teacher Marks<br>& Analyses</div></div>
+        <div style="color:var(--gold);font-size:1.1rem;font-weight:700;">→</div>
+        <div style="background:#FDE8E8;border-radius:7px;padding:10px 12px;text-align:center;min-width:100px;"><div style="font-size:1rem;">⚠️</div><div style="font-size:0.72rem;font-weight:700;color:#8A2828;margin-top:3px;">Error Pattern<br>Identified</div></div>
+        <div style="color:var(--gold);font-size:1.1rem;font-weight:700;">→</div>
+        <div style="background:#E8F4EC;border-radius:7px;padding:10px 12px;text-align:center;min-width:100px;"><div style="font-size:1rem;">🎯</div><div style="font-size:0.72rem;font-weight:700;color:#2A6A34;margin-top:3px;">Targeted<br>Review Lesson</div></div>
+      </div>
+      <div style="margin-top:10px;background:var(--bg);border-radius:7px;padding:9px 12px;display:flex;align-items:center;gap:8px;">
+        <div style="font-size:1rem;">📓</div>
+        <div><div style="font-size:0.73rem;font-weight:700;color:var(--brown);">OneNote Cycle</div><div style="font-size:0.68rem;color:var(--muted);">Submit → Teacher annotates inline → Feedback before next lesson → Student acts on it</div></div>
+      </div>
+    </div>
+    <div class="two-col fade">
+      <div class="main">
+        <p>An end-of-unit topic test for Stage 5 Mathematics, combined with a Microsoft OneNote workflow for digital submission and inline written feedback — returned to students before the next lesson.</p>
+        <h3>Learning Goal</h3>
+        <p>My goal is an assessment practice where marking leads directly to a change in teaching — and where feedback reaches students quickly enough to genuinely influence their next attempt.</p>
+        <h3>Why it addresses Standard 5</h3>
+        <p>APST Standard 5 requires teachers to assess, provide feedback, and use evidence to modify teaching. Analysing error patterns across the class reveals which concepts need reteaching — this is Standard 5.4 in direct action. The OneNote workflow enables the three qualities <span class="cite">Hattie & Timperley (2007)</span> identify as making feedback effective: timely, targeted, and actionable. <span class="cite">Black & Wiliam (1998)</span> found embedding formative assessment within the teaching cycle produces significantly greater learning gains than summative-only approaches.</p>
+        <div class="hl"><h4>NESA Alignment</h4><p>MA5.1-1WM, MA5.2-1WM — Working mathematically, Stage 5. Applicable across all content strands.</p></div>
+        <div class="rf"><h4>Learning Reflection</h4><p>"Assessment is not something that happens after teaching — it is something that shapes what teaching happens next."</p></div>
+      </div>
+      <div class="sb">
+        <div class="card"><h4>At a Glance</h4><ul>
+          <li>Stage 5, end-of-unit test</li>
+          <li>Whole-class error analysis</li>
+          <li>Targeted review from data</li>
+          <li>OneNote — digital submission</li>
+          <li>Inline feedback before next lesson</li>
+        </ul></div>
+        <div class="card-e card"><h4>⚖ Ethics</h4><p>All results handled confidentially. OneNote feedback visible only to individual student and teacher. Feedback framed constructively — never as comparison between students.</p></div>
+        <div class="card-k card"><h4>References</h4>
+          <p>Black, P., & Wiliam, D. (1998). Assessment in Education, 5(1), 7–74.</p>
+          <p>Hattie, J., & Timperley, H. (2007). Review of Educational Research, 77(1), 81–112.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pf">Ashwaq Noor Neeha · EDU542 · Alphacrucis University College</div>
+  </div>
+  </div>
+</div><!-- end page-standards -->
+
+<!-- ══════════════════ ICT TOOLS ══════════════════ -->
+<div id="page-tools" class="page">
+<div class="pi wide">
+  <div class="fade">
+    <div class="ptag tag-t">ICT Tools</div>
+    <h1 class="ptitle">Digital Tools for Secondary Mathematics</h1>
+    <p class="psub">Nine tools selected for specific pedagogical purposes — each justified by research, not novelty <span class="cite">(Selwyn, 2016)</span>.</p>
+  </div>
+  <div class="tools-grid fade">
+    <div class="tool"><div class="tool-type">Feedback</div><h3>📓 Microsoft OneNote</h3><p>Digital submission; teacher annotates inline and returns feedback.</p><div class="tool-use">Enables timely, targeted, actionable feedback <span class="cite">(Hattie & Timperley, 2007)</span>.</div><span class="tapst">APST 5.2</span></div>
+    <div class="tool"><div class="tool-type">Dynamic Mathematics</div><h3>📐 GeoGebra</h3><p>Visualise and interact with graphs, shapes, and transformations on screen.</p><div class="tool-use">Makes abstract Stage 5 concepts visible before symbolic work begins.</div><span class="tapst">APST 2.6</span></div>
+    <div class="tool"><div class="tool-type">Presentation</div><h3>📊 PowerPoint</h3><p>Primary lesson delivery tool with learning intention, examples, and practice.</p><div class="tool-use">Structures delivery and provides a shared visual reference for the class.</div><span class="tapst">APST 3.4</span></div>
+    <div class="tool"><div class="tool-type">Formative Assessment</div><h3>🎮 Kahoot!</h3><p>Game-based quizzes with post-game analytics showing item-level errors.</p><div class="tool-use">Analytics directly inform whether to reteach or move on <span class="cite">(Wang & Tahir, 2020)</span>.</div><span class="tapst">APST 5.1</span></div>
+    <div class="tool"><div class="tool-type">Self-Paced Practice</div><h3>📚 Khan Academy</h3><p>Adaptive practice with immediate feedback and teacher progress dashboard.</p><div class="tool-use">Supports differentiation — students who need more practice receive it independently.</div><span class="tapst">APST 1.5</span></div>
+    <div class="tool"><div class="tool-type">Graphing</div><h3>📈 Desmos</h3><p>Interactive graphing calculator — changing parameters changes the graph live.</p><div class="tool-use">Connects algebra to visuals in real time for linear and non-linear relationships.</div><span class="tapst">APST 2.6</span></div>
+    <div class="tool"><div class="tool-type">Interactive Lessons</div><h3>🖥️ Nearpod</h3><p>Embeds polls and formative checkpoints within slides; students respond live.</p><div class="tool-use">Reveals misconceptions during teaching, not only after a test.</div><span class="tapst">APST 3.3</span></div>
+    <div class="tool"><div class="tool-type">Visual Design</div><h3>🎨 Canva for Education</h3><p>Free design platform for worksheets, reference cards, and display materials.</p><div class="tool-use">Makes teacher-created resources more visually accessible than plain Word docs.</div><span class="tapst">APST 3.4</span></div>
+    <div class="tool"><div class="tool-type">LMS</div><h3>📋 Google Classroom</h3><p>Private, teacher-moderated space for distributing resources and collecting work.</p><div class="tool-use">Safer than open social media platforms for class interaction and file sharing.</div><span class="tapst">APST 4.5</span></div>
+  </div>
+  <div class="fade" style="background:white;border:1px solid var(--border);border-radius:9px;padding:16px 18px;">
+    <p style="font-size:0.87rem;line-height:1.75;color:var(--ink);">Each tool solves a specific pedagogical problem that non-digital alternatives cannot address as effectively. Where technology offers no clear advantage over board work, discussion, or paper tasks, those alternatives are preferred. As <span class="cite">Selwyn (2016)</span> warns, the uncritical adoption of tools without evidence of benefit is one of the most common failures in educational technology use.</p>
+  </div>
+  <div class="pf">Ashwaq Noor Neeha · EDU542 · Alphacrucis University College</div>
+</div>
+</div>
+
+<!-- ══════════════════ CONCLUSION ══════════════════ -->
+<div id="page-conclusion" class="page">
+<div class="pi">
+  <div class="fade">
+    <div class="ptag tag-c">Conclusion</div>
+    <h1 class="ptitle">Reflecting on the Journey</h1>
+    <p class="psub">What I have learned, where I am going, and what this portfolio represents.</p>
+  </div>
+  <div class="viz-block fade">
+    <h4>Professional Learning Goals — Entering the Classroom</h4>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:9px;">
+      <div style="background:#FEF3E2;border-radius:7px;padding:12px;text-align:center;"><div style="font-size:1.2rem;">🎯</div><div style="font-size:0.74rem;font-weight:700;color:#9A6010;margin:5px 0 2px;">Design for Learners</div><div style="font-size:0.67rem;color:var(--muted);">Build resources that meet students where they are, not where the syllabus assumes</div></div>
+      <div style="background:#E8F4EC;border-radius:7px;padding:12px;text-align:center;"><div style="font-size:1.2rem;">🔄</div><div style="font-size:0.74rem;font-weight:700;color:#2A6A34;margin:5px 0 2px;">Reflect & Revise</div><div style="font-size:0.67rem;color:var(--muted);">Treat every lesson as data — use what happens to improve what happens next</div></div>
+      <div style="background:#E2EEF8;border-radius:7px;padding:12px;text-align:center;"><div style="font-size:1.2rem;">📈</div><div style="font-size:0.74rem;font-weight:700;color:#284E7A;margin:5px 0 2px;">Keep Growing</div><div style="font-size:0.67rem;color:var(--muted);">These resources are a starting point — every classroom will teach me how to improve them</div></div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:3fr 1fr;gap:28px;align-items:start;" class="fade">
+    <div>
+      <p>This portfolio is not a record of what I have done — it is a statement of who I am becoming as a teacher. The five resources represent my current best thinking about effective secondary Mathematics teaching, grounded in research, aligned to the APST Standards, and designed with real students in mind.</p>
+      <p>Each resource reflects a learning goal: design for diverse learners (Standard 1), teach with multiple representations <span class="cite">(Anthony & Walshaw, 2009)</span> (Standard 2), plan sequences that build genuine understanding <span class="cite">(Kilpatrick et al., 2001)</span> (Standard 3), create safe classrooms where students participate <span class="cite">(Marzano et al., 2003)</span> (Standard 4), and use assessment to improve teaching, not just measure it <span class="cite">(Black & Wiliam, 1998)</span> (Standard 5).</p>
+      <p>These are goals, not achievements. As <span class="cite">Darling-Hammond & Bransford (2005)</span> argue, becoming a teacher is a career-long process. This portfolio is the beginning.</p>
+      <div class="rf" style="margin-top:14px;"><h4>Final Reflection</h4><p>"The resources in this portfolio were designed for students I have not yet met in a classroom of my own. I look forward to the moment each resource meets reality and teaches me something new about how to improve it."</p></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:9px;">
+      <div class="card"><h4>Learning Goals</h4><ul>
+        <li>Design for diverse learners</li><li>Teach with multiple representations</li>
+        <li>Plan sequences, not just tasks</li><li>Build proactive, safe classrooms</li>
+        <li>Let assessment drive teaching</li>
+      </ul></div>
+      <div class="card"><h4>Areas to Develop</h4><ul>
+        <li>Stronger extension tasks</li><li>Faster feedback turnaround</li>
+        <li>More student-led discussion</li><li>Broader assessment repertoire</li>
+      </ul></div>
+      <div class="card" style="background:var(--ink);border-color:var(--ink);">
+        <h4 style="color:var(--gold-light);border-color:#3A3020;">Looking Forward</h4>
+        <p style="font-size:0.78rem;color:#C0B8AC;line-height:1.6;">I am preparing for a career in secondary Mathematics. Every resource here will be tested, refined, and improved the moment it meets a real classroom — and that is exactly the point.</p>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Ashwaq Noor Neeha · EDU542 · Alphacrucis University College</div>
+</div>
+</div>
+
+<!-- ══════════════════ REFERENCES ══════════════════ -->
+<div id="page-references" class="page refs-page">
+  <div class="refs-inner">
+    <div class="fade">
+      <div class="ptag tag-ref">APA 7th Edition</div>
+      <h1 class="ptitle">References</h1>
+      <p class="psub">All sources cited across the portfolio.</p>
+    </div>
+    <ul class="ref-list fade">
+      <li>AITSL. (2011). <em>Australian Professional Standards for Teachers.</em> Education Services Australia. https://www.aitsl.edu.au/teach/standards</li>
+      <li>Anthony, G., & Walshaw, M. (2009). Characteristics of effective teaching of mathematics. <em>Journal of Mathematics Education, 2</em>(2), 147–164.</li>
+      <li>Black, P., & Wiliam, D. (1998). Assessment and classroom learning. <em>Assessment in Education, 5</em>(1), 7–74. https://doi.org/10.1080/0969595980050102</li>
+      <li>Bruner, J. S. (1966). <em>Toward a Theory of Instruction.</em> Harvard University Press.</li>
+      <li>Darling-Hammond, L., & Bransford, J. (Eds.). (2005). <em>Preparing Teachers for a Changing World.</em> Jossey-Bass.</li>
+      <li>Hattie, J. (2009). <em>Visible Learning.</em> Routledge.</li>
+      <li>Hattie, J., & Timperley, H. (2007). The power of feedback. <em>Review of Educational Research, 77</em>(1), 81–112. https://doi.org/10.3102/003465430298487</li>
+      <li>Kilpatrick, J., Swafford, J., & Findell, B. (Eds.). (2001). <em>Adding It Up.</em> National Academy Press.</li>
+      <li>Marzano, R. J., Marzano, J. S., & Pickering, D. (2003). <em>Classroom Management That Works.</em> ASCD.</li>
+      <li>NSW Education Standards Authority [NESA]. (2012). <em>Mathematics K–10 Syllabus.</em> NSW Government. https://curriculum.nsw.edu.au/learning-areas/mathematics</li>
+      <li>Selwyn, N. (2016). <em>Is Technology Good for Education?</em> Polity Press.</li>
+      <li>Sullivan, P., Bobis, J., Downton, A., Feng, M., Hughes, S., Livy, S., McCormick, M., & Russo, J. (2020). Threats and opportunities in remote learning of mathematics. <em>Mathematics Education Research Journal, 32,</em> 405–424. https://doi.org/10.1007/s13394-020-00339-6</li>
+      <li>Wannarka, R., & Ruhl, K. (2008). Seating arrangements that promote positive academic and behavioural outcomes. <em>Support for Learning, 23</em>(2), 89–93.</li>
+      <li>Wang, A. I., & Tahir, R. (2020). The effect of using Kahoot! for learning. <em>Computers & Education, 149,</em> 103818. https://doi.org/10.1016/j.compedu.2020.103818</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+var currentStd = 's1';
+
+function show(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  var navEl = document.getElementById('nav-'+id);
+  if(navEl) navEl.classList.add('active');
+  window.scrollTo(0,0);
+  animateFade(id);
+}
+
+function showStd(sid){
+  // show the standards page
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('page-standards').classList.add('active');
+  document.getElementById('nav-standards').classList.add('active');
+  // show correct panel
+  document.querySelectorAll('.std-panel').forEach(p=>p.style.display='none');
+  document.getElementById('std-'+sid).style.display='block';
+  // update subnav
+  document.querySelectorAll('.std-subnav a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('snav-'+sid).classList.add('active');
+  currentStd = sid;
+  window.scrollTo(0,0);
+  animateFade('standards');
+  // re-animate bloom bars
+  setTimeout(()=>{
+    document.querySelectorAll('#std-'+sid+' .bloom-fill').forEach(b=>{
+      var w=b.style.width;b.style.width='0';setTimeout(()=>b.style.width=w,200);
+    });
+  },50);
+}
+
+function animateFade(id){
+  var pageId = id==='standards'?'standards':id;
+  setTimeout(()=>{
+    var panel = id==='standards'?document.getElementById('std-'+currentStd):document.getElementById('page-'+id);
+    if(!panel) return;
+    panel.querySelectorAll('.fade').forEach((el,i)=>{
+      el.classList.remove('in');
+      setTimeout(()=>el.classList.add('in'),i*80);
+    });
+  },30);
+}
+
+setTimeout(()=>{
+  document.querySelectorAll('#page-home .fade').forEach((el,i)=>{
+    setTimeout(()=>el.classList.add('in'),i*80);
+  });
+},100);
+</script>
+</body>
+</html>
